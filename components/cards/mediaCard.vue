@@ -17,13 +17,7 @@
     </div>
 
     <div class="absolute top-4 right-4">
-      <ButtonElement
-        :text="`${isInList ? '-' : '+'}`"
-        :aria-label="`${isInList ? 'Remove' : 'Add'} ${props.path} ${isInList ? 'from' : 'to'} list`"
-        :style="'white'"
-        :onClickEvent="handleListToggle"
-        class="w-[40px] h-[40px] flex justify-center items-center !rounded-full shadow-2xl"
-      />
+      <ButtonListToggleSphere :path="path" :data="data" />
     </div>
   </div>
 </template>
@@ -32,7 +26,7 @@
 import type { Movie, Serie } from "@/types/globals";
 import { useUserDataStore } from "@/stores/userData";
 import imageElement from "@/components/ui/imageElement.vue";
-import ButtonElement from "@/components/ui/buttonElement.vue";
+import ButtonListToggleSphere from "@/components/ui/buttonListToggleSphere.vue";
 import placeholderMovies from "@/src/assets/movie.jpg";
 import placeholdeSeries from "@/src/assets/serie.jpg";
 
@@ -48,5 +42,15 @@ const isInList = computed(() => {
 });
 const handleListToggle = () => {
   userData.toggleListItem(props.path, props.data.id);
+
+  const nuxtApp = useNuxtApp();
+  nuxtApp.$trackEvent({
+    event: `${isInList.value ? "Remove" : "Add"}_${props.path}`,
+    message: `${isInList.value ? "Remove" : "Add"} ${props.data.id} from user list `,
+    data: {
+      id: props.data.id,
+      name: props.data.name,
+    },
+  });
 };
 </script>

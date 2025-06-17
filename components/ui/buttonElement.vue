@@ -23,7 +23,7 @@ const props = defineProps<{
   href?: string;
   to?: string | object;
   ariaLabel?: string;
-  onClickEvent?: () => void;
+  handleClickEvent?: () => void;
 }>();
 
 const buttonStyles = {
@@ -44,7 +44,7 @@ const appliedStyle = computed(() => {
 const componentTag = computed(() => {
   if (props.href) return "a";
   if (props.to) return NuxtLink;
-  if (props.onClickEvent) return "button";
+  if (props.handleClickEvent) return "button";
   return "button";
 });
 
@@ -66,8 +66,8 @@ const handleClick = () => {
     },
   });
 
-  if (props.onClickEvent) {
-    props.onClickEvent();
+  if (props.handleClickEvent) {
+    props.handleClickEvent();
   }
 };
 </script>

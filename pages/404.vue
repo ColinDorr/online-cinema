@@ -2,11 +2,11 @@
   <div class="w-full !max-w-full">
     <div
       class="h-screen flex justify-center items-center bg-cover bg-center"
-      style="
+      :style="`
         background-image:
           linear-gradient(rgb(0 0 0 / 60%), rgb(0 0 0 / 60%)),
-          url(&quot;https://assets.nflxext.com/ffe/siteui/vlv3/c0a32732-b033-43b3-be2a-8fee037a6146/2fe6e3c0-5613-4625-a0c1-3d605effd10b/IN-en-20210607-popsignuptwoweeks-perspective_alpha_website_large.jpg&quot;);
-      "
+          url('${BackgroundImage}');
+      `"
     >
       <div>
         <h1 class="text-white font-bold text-5xl flex flex-col items-center">
@@ -22,12 +22,10 @@
         <div class="flex gap-4 justify-center items-center">
           <ButtonElement text="Back to home" to="/" />
 
-          <!--                     
-                    <ButtonElement text="Navigation" ariaLabel="Enter the online cinema" to="/about" />
-                    <ButtonElement text="Show" to="/browse/genre/banaan" />
-                    <ButtonElement text="External link" href="https://www.nu.nl" />
-                    <ButtonElement text="Function" :onClickEvent="showAlert" />
-                    <ButtonElement text="Function" :onClickEvent="showAlert('hello')" /> -->
+          <!-- <ButtonElement text="Internal link" ariaLabel="Enter the online cinema" to="/movies" />
+          <ButtonElement text="External link" href="https://www.nu.nl" />
+          <ButtonElement text="Function" :handleClickEvent="() => showAlert()" />
+          <ButtonElement text="Function" :handleClickEvent="() => showAlert('hello')" /> -->
         </div>
       </div>
     </div>
@@ -36,6 +34,7 @@
 
 <script setup lang="ts">
 import ButtonElement from "@/components/ui/buttonElement.vue";
+import BackgroundImage from "@/src/assets/background.jpg";
 
-const showAlert = (text: string | undefined) => alert(text || "test 123");
+const showAlert = (text?: string | undefined) => alert(text || "test 123");
 </script>
