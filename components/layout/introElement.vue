@@ -5,34 +5,40 @@
   <div v-else class="grid px-10">
     <img class="mx-auto w-32 md:w-48" :src="Netflix" alt="" />
     <p class="mx-auto mb-3 mt-10 text-lg text-white md:mb-8 md:mt-20 md:text-5xl md:font-semibold">
-      Who's Watching? - {{  userStore.user?.id || "unknown" }} - {{ selected }}
+      Who's Watching?
     </p>
-    <ul
-      class="md:grid-row-1 ml-7 grid h-fit grid-cols-2 gap-3 md:mx-auto md:ml-48 md:w-fit md:grid-flow-col md:gap-6"
-    >
-      <li
-        v-for="userKey in imageArray"
-        :key="userKey"
-        class="text-xs md:flex md:w-fit md:flex-col"
+
+    <div class="mx-auto flex flex-col lg:flex-row flex-wrap gap-5">
+      <ul
+        class="flex flex-row flex-wrap gap-5"
       >
-        <button @click="handleAvatarClick(userKey)" :aria-label="`select ${userKey} avatar`">
-          <User
-            class="w-24 rounded-sm md:w-32 md:hover:border-4"
-            :fill="userColors[userKey]"
-          />
+        <li
+          v-for="userKey in imageArray"
+          :key="userKey"
+          class="text-xs md:flex md:w-fit md:flex-col"
+        >
+          <button @click="handleAvatarClick(userKey)" :aria-label="`select ${userKey} avatar`" class>
+            <User
+              class="w-24 rounded-sm md:w-32 md:hover:border-4"
+              :fill="userColors[userKey]"
+            />
+          </button>
+        </li>
+      </ul>
+      <span
+        class="relative"
+      >
+        <button
+          class="border bg-[#101010f9] px-3 py-1 text-3xl font-bold h-24 w-24 rounded-sm md:w-32 md:md:h-32"
+          v-if="count < 3"
+          @click="addImage"
+        >
+          +
         </button>
-      </li>
-    </ul>
-    <span
-      class="absolute bottom-24 ml-9 mt-5 flex w-20 flex-col font-extralight text-white md:right-40 md:top-64 md:w-28"
-    >
-      <button
-        class="h-20 rounded-md border bg-[#101010f9] px-3 py-1 text-3xl font-bold md:h-28"
-        @click="addImage"
-      >
-        +
-      </button>
-    </span>
+      </span>
+
+    </div>
+
   </div>
 </template>
 

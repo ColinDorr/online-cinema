@@ -1,45 +1,30 @@
 <template>
   <div class="w-full !max-w-full">
-    <h1>home</h1>
-    <!-- <splideSlider v-for="(row, rowIndex) in movieRows" :key="`movies-row--${rowIndex}`" :slides="row" path="movies" title="Movies"/>
-    <splideSlider v-for="(row, rowIndex) in serieRows" :key="`series-row--${rowIndex}`" :slides="row" path="series" title="Series" /> -->
 
-
-    <splideSlider :slides="displayedMovies" path="movies" title="Movies" :placeholder="Movie" />
-    <splideSlider :slides="displayedSeries" path="series" title="Series" :placeholder="Serie" />
-    <!-- <splideSlider :slides="displayedPeople" path="people" title="People" :placeholder="User" /> -->
+    <LandingHeader :data="highlightedMovie" :path="'movies'" />
+    <splideSlider :slides="displayedMovies" path="movies" title="Hottest movies" />
+    <splideSlider :slides="displayedSeries" path="series" title="Most watched Series" />
+    <splideSlider :slides="displayedPeople" path="people" title="Greatest actors":options="peopleSliderOptions"/>
   </div>
 </template>
 
 
 <script setup lang="ts">
   import { useStreamingDataStore } from '@/stores/streamingData'
-  import { getMovies, getSeries, getPeople } from '@/utils/tvDbCalls';
-  import ButtenElement from '@/components/ui/buttenElement.vue';
   import splideSlider from "@/components/ui/splideSlider.vue"
-  import Movie from "@/src/assets/movie.jpg";
-  import Serie from "@/src/assets/serie.jpg";
-  import User from "@/src/assets/User.svg";
+  import LandingHeader from "@/components/headers/landingHeader.vue";
 
   const streamingData = useStreamingDataStore();
+  const peopleSliderOptions = {
+    fixedWidth: "150px",
+    breakpoints: {
+        350: { fixedWidth: "200px" },
+        785: { fixedWidth: "200px" },
+    },
+  }
 
-  const displayedMovies = computed(() => { return streamingData.movies.slice(0, 30) });
+  const highlightedMovie = computed(() => { return streamingData.movies.slice(0, 1)[0] });
+  const displayedMovies = computed(() => { return streamingData.movies.slice(1, 31) });
   const displayedSeries = computed(() => { return streamingData.series.slice(0, 30) });
   const displayedPeople = computed(() => { return streamingData.people.slice(0, 50) });
-
-  const movieRows = computed(() => {
-    const rows = []
-    for(let i = 0; i < displayedMovies.value.length; i += 20){
-      rows.push(displayedMovies.value.slice(i, i + 20))
-    }
-    return rows
-  })
-
-  const serieRows = computed(() => {
-    const rows = []
-    for(let i = 0; i < displayedSeries.value.length; i += 20){
-      rows.push(displayedSeries.value.slice(i, i + 20))
-    }
-    return rows
-  })
 </script>

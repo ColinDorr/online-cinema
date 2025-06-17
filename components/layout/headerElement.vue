@@ -20,10 +20,10 @@
     
     <div class="hidden font-medium text-white md:-ml-[40rem] md:flex md:w-[22rem] md:justify-between">
       <NuxtLink to="/" class="hover:text-zinc-600">Home</NuxtLink>
-      <NuxtLink to="/movies" class="hover:text-zinc-600">New & Popular</NuxtLink>
       <NuxtLink to="/movies" class="hover:text-zinc-600">Movies</NuxtLink>
       <NuxtLink to="/series" class="hover:text-zinc-600">Series</NuxtLink>
-      <NuxtLink to="/series" class="hover:text-zinc-600">People</NuxtLink>
+      <NuxtLink to="/people" class="hover:text-zinc-600">People</NuxtLink>
+      <NuxtLink to="/profile" class="hover:text-zinc-600">List</NuxtLink>
     </div>
 
     <NuxtLink to="/profile" class="md:mr-12">

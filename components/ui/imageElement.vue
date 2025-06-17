@@ -1,9 +1,9 @@
 <template>
   <template v-if="compiledPath">
-    <img :src="compiledPath" :alt="alt" loading="lazy" />
+    <img :src="compiledPath" :alt="alt" loading="lazy" class="w-full h-full" />
   </template>
   <template v-else-if="placeholder">
-    <component :is="placeholder" fill="currentColor" class="w-full h-full" />
+    <img :src="placeholder" :alt="alt" loading="lazy" class="w-full h-full" />
   </template>
 </template>
 
@@ -11,9 +11,9 @@
 import { computed } from 'vue'
 
 const props = defineProps<{
-  path: string,
-  alt: string
-  placeholder?: any, // SVG component or undefined
+  path: string | undefined,
+  alt: string,
+  placeholder?: string, // string URL of placeholder image
 }>()
 
 const compiledPath = computed(() => {

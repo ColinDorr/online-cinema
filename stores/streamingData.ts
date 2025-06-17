@@ -60,7 +60,7 @@ export const useStreamingDataStore = defineStore('streamingData', {
     getSerieById(id: number): Serie | undefined {
       return (this.series.find(serie => serie.id === id))?.[0] || null
     },
-    getPeopleById(id: number): Person | undefined {
+    getPersonById(id: number): Person | undefined {
       return (this.people.find(person => person.id === id))?.[0] || null
     }
   }

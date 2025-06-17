@@ -5,7 +5,7 @@
  */
 
 import { describe, it, expect, beforeEach, vi, test } from 'vitest'
-import { getValidBearerToken, getMovies, getMovieById, getSeries, getSeriesById, getPeople, getPersonById } from '@/utils/tvDbCalls'
+import { getValidBearerToken, getMovies, getMovieById, getSeries, getSerieById, getPeople, getPersonById } from '@/utils/tvDbCalls'
 
 
 // Mock setup for stores and config
@@ -186,7 +186,7 @@ describe('Validate Series API', () => {
     })
 
     // Fetch single series by ID and verify response
-    const series = await getSeriesById(seriesId)
+    const series = await getSerieById(seriesId)
     expect(series).toEqual(response)
   })
 

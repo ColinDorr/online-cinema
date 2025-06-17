@@ -5,8 +5,8 @@ export const useUserDataStore = defineStore('userData', {
     user: {
       icon: undefined,
       list: {
-        movies: [],
-        series: [],
+        movies: []as number[],
+        series: [] as number[],
       }
     }
   }),

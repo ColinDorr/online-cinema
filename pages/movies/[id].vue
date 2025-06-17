@@ -1,5 +1,5 @@
 <template>
-   <showHeader v-if="movie" :data="movie"/>
+   <showHeader v-if="movie" :data="movie" :path="'movies'" />
 </template>
 
 <script setup lang="ts">

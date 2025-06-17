@@ -1,7 +1,11 @@
 <template>
-  <h1>Movies</h1>
-  <div class="flex flex-col gap-10">
-    <splideSlider v-for="(row, rowIndex) in movieRows" :key="rowIndex" :slides="row" path="movies" />
+  <div class="!py-20">
+    <div class="container mx-auto px-5 lg:px-0">
+      <h1 class="text-2xl lg:text-3xl text-center w-full">Movies</h1>
+    </div>
+    <div class="flex flex-col gap-10">
+      <splideSlider v-for="(row, rowIndex) in movieRows" :key="rowIndex" :title="getRandomMovieGenre()" :slides="row" path="movies" />
+    </div>
   </div>
 </template>
 
@@ -27,6 +31,24 @@ const loadMore = () => {
   if (nextMovies.length) {
     displayedMovies.value = displayedMovies.value.concat(nextMovies)
   }
+}
+
+function getRandomMovieGenre() {
+  const genres = [
+    'Action',
+    'Adventure',
+    'Comedy',
+    'Crime',
+    'Drama',
+    'Horror',
+    'Mystery',
+    'Romance',
+    'Science Fiction',
+    'Thriller',
+  ];
+
+  const randomIndex = Math.floor(Math.random() * genres.length);
+  return genres[randomIndex];
 }
 
 onMounted(async () => {

@@ -1,41 +1,62 @@
 <template>
-  <h1>Movies</h1>
-  <div class="flex flex-col gap-10">
-    <splideSlider v-for="(row, rowIndex) in movieRows" :key="rowIndex" :slides="row" path="movies" />
+  <div class="!py-20">
+    <div class="container mx-auto px-5 lg:px-0">
+      <h1 class="text-2xl lg:text-3xl text-center w-full">Series</h1>
+    </div>
+    <div class="flex flex-col gap-10">
+      <splideSlider v-for="(row, rowIndex) in serieRows" :key="rowIndex" :title="getRandomMovieGenre()" :slides="row" path="series" :show-more="false"/>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useStreamingDataStore } from '@/stores/streamingData'
-import { getMovies } from '@/utils/tvDbCalls';
+import { getSeries } from '@/utils/tvDbCalls';
 import splideSlider from "@/components/ui/splideSlider.vue"
 
 const streamingData = useStreamingDataStore()
-const displayedMovies = ref(streamingData.movies.slice(0, 100))
+const displaySeries = ref(streamingData.series.slice(0, 100))
 
-const movieRows = computed(() => {
+const serieRows = computed(() => {
   const rows = []
-  for(let i = 0; i < displayedMovies.value.length; i += 20){
-    rows.push(displayedMovies.value.slice(i, i + 20))
+  for(let i = 0; i < displaySeries.value.length; i += 20){
+    rows.push(displaySeries.value.slice(i, i + 20))
   }
   return rows
-})
+});
 
 const loadMore = () => {
-  const currentLength = displayedMovies.value.length
-  const nextMovies = streamingData.movies.slice(currentLength, currentLength + 100)
-  if (nextMovies.length) {
-    displayedMovies.value = displayedMovies.value.concat(nextMovies)
+  const currentLength = displaySeries.value.length
+  const nextSeries = streamingData.series.slice(currentLength, currentLength + 100)
+  if (nextSeries.length) {
+    displaySeries.value = displaySeries.value.concat(nextSeries)
   }
 }
 
+function getRandomMovieGenre() {
+  const genres = [
+    'Action',
+    'Adventure',
+    'Comedy',
+    'Crime',
+    'Drama',
+    'Horror',
+    'Mystery',
+    'Romance',
+    'Science Fiction',
+    'Thriller',
+  ];
+
+  const randomIndex = Math.floor(Math.random() * genres.length);
+  return genres[randomIndex];
+}
 onMounted(async () => {
-  if(streamingData.movies.length < 200){
-    const movies = await getMovies();
+  if(streamingData.series.length < 200){
+    const series = await getSeries();
     
-    if(movies.status === "success"){
-       streamingData.setMovies(movies.data);
-       displayedMovies.value = movies.data.slice(0, 100)
+    if(series.status === "success"){
+       streamingData.setSeries(series.data);
+       displaySeries.value = series.data.slice(0, 100)
     }
     loadMore()
   }

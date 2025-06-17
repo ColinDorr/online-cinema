@@ -12,32 +12,25 @@
                 <p class="text-white text-lg flex flex-col items-center">Please check if the url is correct or try it again later </p>
 
                 <div class="flex gap-4 justify-center items-center">
-                    <ButtenElement text="Back to home" to="/" />
+                    <ButtonElement text="Back to home" to="/" />
                     
-                    
-                    <!-- <ButtenElement text="Navigation" ariaLabel="Enter the online cinema" to="/about" /> -->
-                    <!-- <ButtenElement text="Show" to="/browse/genre/banaan" /> -->
-                    <!-- <ButtenElement text="External link" href="https://www.nu.nl" /> -->
-                        <!-- <ButtenElement text="Function" :onClickEvent="showAlert" />
-                        <ButtenElement text="Function" :onClickEvent="showAlert('hello')" /> -->
+<!--                     
+                    <ButtonElement text="Navigation" ariaLabel="Enter the online cinema" to="/about" />
+                    <ButtonElement text="Show" to="/browse/genre/banaan" />
+                    <ButtonElement text="External link" href="https://www.nu.nl" />
+                    <ButtonElement text="Function" :onClickEvent="showAlert" />
+                    <ButtonElement text="Function" :onClickEvent="showAlert('hello')" /> -->
                    
                 </div>
 
             </div>
         </div>
     </div>
-
-
-    <!-- <div class="h-screen flex flex-col justify-center items-center bg-black text-white text-center">
-        <h1 class="text-6xl font-bold mb-4">404</h1>
-        <p class="text-2xl mb-6">Sorry, the page you're looking for doesn't exist.banaan</p>
-        <ButtenElement text="Go Home" to="/" />
-    </div> -->
 </template>
 
 
 <script setup lang="ts">
-    import ButtenElement from '@/components/ui/buttenElement.vue';
+    import ButtonElement from '@/components/ui/buttonElement.vue';
 
     const showAlert = ( text: string|undefined) => alert(text || 'test 123');
 </script>

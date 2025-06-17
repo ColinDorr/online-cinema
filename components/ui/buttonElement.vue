@@ -44,11 +44,24 @@ const componentTag = computed(() => {
   return 'button';
 });
 
+const text = props.text;
 const to = props.to;
 const href = props.href;
 const ariaLabel = props.ariaLabel;
 
 const handleClick = () => {
+  const nuxtApp = useNuxtApp();
+  nuxtApp.$trackEvent({
+    event: `click ${componentTag}`,
+    message: `clicked on ${componentTag} '${text}' going to ${to || href}`,
+    data: {
+      text,
+      to,
+      href,
+      ariaLabel
+    }
+ })
+
   if (props.onClickEvent) {
     props.onClickEvent();
   }
