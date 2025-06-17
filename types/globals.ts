@@ -16,8 +16,8 @@ export type Movie = {
     keepUpdated: boolean;
   };
   year: string;
-  [key: string]: any
-}
+  [key: string]: any;
+};
 
 export type Serie = {
   id: number;
@@ -46,8 +46,8 @@ export type Serie = {
   episodes: number | null;
   overview: string;
   year: string;
-  [key: string]: any
-}
+  [key: string]: any;
+};
 
 export type Person = {
   id: number;
@@ -58,5 +58,5 @@ export type Person = {
   overviewTranslations: string[] | null;
   aliases: string[] | null;
   lastUpdated: string;
-  [key: string]: any
-}
+  [key: string]: any;
+};

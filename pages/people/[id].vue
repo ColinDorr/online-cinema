@@ -1,13 +1,12 @@
 <template>
-   <!-- <showHeader v-if="person" :data="person"/> -->
-    <h1 v-if="person">{{ person.name }}</h1>
+  <PersonHeader :data="person" v-if="person" />
 </template>
 
 <script setup lang="ts">
 import { useStreamingDataStore } from "@/stores/streamingData";
-import { getPersonById } from '@/utils/tvDbCalls';
+import { getPersonById } from "@/utils/tvDbCalls";
 import type { Person } from "~/types/globals";
-import showHeader from '@/components/headers/showHeader.vue'
+import PersonHeader from "~/components/headers/personHeader.vue";
 
 const streamingData = useStreamingDataStore();
 const route = useRoute();

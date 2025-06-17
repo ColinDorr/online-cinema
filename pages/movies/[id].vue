@@ -1,12 +1,12 @@
 <template>
-   <showHeader v-if="movie" :data="movie" :path="'movies'" />
+  <showHeader v-if="movie" :data="movie" :path="'movies'" />
 </template>
 
 <script setup lang="ts">
 import { useStreamingDataStore } from "@/stores/streamingData";
-import { getMovieById } from '@/utils/tvDbCalls';
+import { getMovieById } from "@/utils/tvDbCalls";
 import type { Movie } from "~/types/globals";
-import showHeader from '@/components/headers/showHeader.vue'
+import showHeader from "@/components/headers/showHeader.vue";
 
 const streamingData = useStreamingDataStore();
 const route = useRoute();

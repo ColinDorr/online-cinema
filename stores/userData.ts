@@ -1,36 +1,36 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
-export const useUserDataStore = defineStore('userData', {
+export const useUserDataStore = defineStore("userData", {
   state: () => ({
     user: {
       icon: undefined,
       list: {
-        movies: []as number[],
+        movies: [] as number[],
         series: [] as number[],
-      }
-    }
+      },
+    },
   }),
 
   actions: {
-    setUserData (data: { [key: string]: any }) {
+    setUserData(data: { [key: string]: any }) {
       this.user = {
         ...this.user,
-        ...data
-      }
+        ...data,
+      };
     },
-    getListIndex (path: "movies" | "series", id: number) {
+    getListIndex(path: "movies" | "series", id: number) {
       const list = this.user.list[path];
       const index = list.indexOf(id);
       return index;
     },
-    toggleListItem (path: "movies" | "series", id: number) {
+    toggleListItem(path: "movies" | "series", id: number) {
       const list = this.user.list[path];
       const index = this.getListIndex(path, id);
       if (index !== -1) {
-        this.user.list[path] = list.filter(item => item !== id);
+        this.user.list[path] = list.filter((item) => item !== id);
       } else {
         this.user.list[path] = [...list, id];
       }
-    }
-  }
-})
+    },
+  },
+});

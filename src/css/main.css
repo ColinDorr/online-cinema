@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
 /* // Default theme */
-@import '@splidejs/vue-splide/css';
+@import "@splidejs/vue-splide/css";
 
-@import "@/src/css/splide.css"
+@import "@/src/css/splide.css";

@@ -5,9 +5,9 @@
 }
 
 .slider-wrapper {
-    width: calc(100% + 30px);
-    padding: 0 15px;
-    margin-left: -15px;
-    overflow: hidden;
-    background:red;
+  width: calc(100% + 30px);
+  padding: 0 15px;
+  margin-left: -15px;
+  overflow: hidden;
+  background: red;
 }
