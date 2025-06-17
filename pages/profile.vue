@@ -1,43 +1,45 @@
 <template>
-  <div class="flex flex-col gap-8 justify-center items-center py-40">
-    <h1>My Profile</h1>
-    <p>
-      A/B testing version: {{ abVersion }}
-      <span v-if="abVersion === 'a'">⭐</span
-      ><span v-else-if="abVersion === 'b'">🚗</span>
-    </p>
-    <div
-      v-if="listedMovies.length"
-      class="flex w-full flex-col gap-5 justify-baseline items-baseline"
-    >
-      <h2 class="font-bold text-2xl md:text-3xl">My movies</h2>
-      <ul class="flex flex-wrap gap-5">
-        <li
-          v-for="(item, index) in listedMovies"
-          class="w-[200px] md:w-[300px]"
-        >
-          <MediaCard :data="item" :path="'movies'" />
-        </li>
-      </ul>
-    </div>
+  <div class="container mx-auto px-5 lg:px-0 !py-20">
+    <div class="flex flex-col gap-8 justify-center items-center">
+      <h1 class="text-2xl lg:text-3xl text-center w-full">My profile</h1>
+      <p>
+        A/B testing version: {{ abVersion }}
+        <span v-if="abVersion === 'a'">⭐</span
+        ><span v-else-if="abVersion === 'b'">🚗</span>
+      </p>
+      <div
+        v-if="listedMovies.length"
+        class="flex w-full flex-col gap-5 justify-baseline items-baseline"
+      >
+        <h2 class="font-bold text-2xl md:text-3xl">My movies</h2>
+        <ul class="flex flex-wrap gap-5">
+          <li
+            v-for="(item, index) in listedMovies"
+            class="w-[200px] md:w-[300px]"
+          >
+            <MediaCard :data="item" :path="'movies'" />
+          </li>
+        </ul>
+      </div>
 
-    <div
-      v-if="listedSeries.length"
-      class="flex w-full flex-col gap-5 justify-baseline items-baseline"
-    >
-      <h2 class="font-bold text-2xl md:text-3xl">My Series</h2>
-      <ul class="flex flex-wrap gap-5">
-        <li
-          v-for="(item, index) in listedSeries"
-          class="w-[200px] md:w-[300px]"
-        >
-          <MediaCard :data="item" :path="'series'" />
-        </li>
-      </ul>
+      <div
+        v-if="listedSeries.length"
+        class="flex w-full flex-col gap-5 justify-baseline items-baseline"
+      >
+        <h2 class="font-bold text-2xl md:text-3xl">My Series</h2>
+        <ul class="flex flex-wrap gap-5">
+          <li
+            v-for="(item, index) in listedSeries"
+            class="w-[200px] md:w-[300px]"
+          >
+            <MediaCard :data="item" :path="'series'" />
+          </li>
+        </ul>
+      </div>
+      <p v-if="!listedSeries.length && !listedMovies.length">
+        No movies or series saved yet
+      </p>
     </div>
-    <p v-if="!listedSeries.length && !listedMovies.length">
-      No movies or series saved yet
-    </p>
   </div>
 </template>
 
