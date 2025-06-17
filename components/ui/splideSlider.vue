@@ -1,38 +1,45 @@
 <template>
-  <div>
-    <h2 v-if="title">{{ title }}</h2>
-    <Splide :options="settings" :aria-label="title">
-      <SplideSlide v-for="(slide, index) in slides" :key="slide.id">
-        <NuxtLink :to="`${path}/${slide.id}`">
-          <h3>{{ slide.name }}</h3>
-          <imageElement :path="slide.image" :alt="slide.name" width="300"/>
-        </NuxtLink>
+  <div class="flex flex-col">
+    <div class="container mx-auto flex gap-4 justify-between items-center">
+      <h2 v-if="title" class="font-bold text-2xl md:text-3xl">{{ title }}</h2>
+      <ButtenElement class="hidden lg:block" :to="`/${path}`" :text="`view more`" :ariaLabel="`View more ${path}`" />
+    </div>
+    <Splide :options="settings" :aria-label="title" class="py-5 pb-10">
+      <SplideSlide v-for="(slide, index) in slides" :key="slide.id" class="py-10 bg-lime">
+        <MediaCard v-if="path === 'movies' || path === 'series'" :path="path" :data="slide"/>
       </SplideSlide>
     </Splide>
+    <div class="container mx-auto flex gap-4 justify-center items-center">
+      <ButtenElement class="lg:hidden" :to="`/${path}`" :text="`view more`" :ariaLabel="`View more ${path}`" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Movie, Serie } from '@/types/globals'
+import type { Movie, Serie, Person} from '@/types/globals'
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/vue-splide';
-import imageElement from './imageElement.vue';
+import ButtenElement from '@/components/ui/buttenElement.vue';
+import MediaCard from "@/components/cards/mediaCard.vue";
 
 const props = defineProps<{
     title?:string,
-    path?: "movies" | "series";
-    slides: Movie[] | Serie[];
+    path?: "movies" | "series" | "people";
+    slides: Movie[] | Serie[] | Person[];
+    // placeholder?: any
 }>();
 
 const settings = {
   type: "loop",
-  perPage: 8,
-  fixedWidth: "10dvw",
+  perPage: 'auto',
+  fixedWidth: "300px",
   focus: 0,
   gap: "24px",
   paginationKeyboard: true,
-  // breakpoints: {
-  //     1280: { padding: { left: "20px", right: "20px" } }
-  // },
+  mediaQuery: 'min',
+  breakpoints: {
+      350: { fixedWidth: "250px" },
+      785: { fixedWidth: "300px" },
+  },
   arrows: true,
   pagination: true,
   // drag: "free",

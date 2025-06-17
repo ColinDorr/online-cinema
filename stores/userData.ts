@@ -2,13 +2,34 @@ import { defineStore } from 'pinia'
 
 export const useUserDataStore = defineStore('userData', {
   state: () => ({
-    user: {}
+    user: {
+      icon: undefined,
+      list: {
+        movies: [],
+        series: [],
+      }
+    }
   }),
 
   actions: {
-    setUserData ( data: {string: any}) {
+    setUserData (data: { [key: string]: any }) {
       this.user = {
-        ...this.user
+        ...this.user,
+        ...data
+      }
+    },
+    getListIndex (path: "movies" | "series", id: number) {
+      const list = this.user.list[path];
+      const index = list.indexOf(id);
+      return index;
+    },
+    toggleListItem (path: "movies" | "series", id: number) {
+      const list = this.user.list[path];
+      const index = this.getListIndex(path, id);
+      if (index !== -1) {
+        this.user.list[path] = list.filter(item => item !== id);
+      } else {
+        this.user.list[path] = [...list, id];
       }
     }
   }

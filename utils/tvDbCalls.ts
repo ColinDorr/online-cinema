@@ -94,7 +94,7 @@ export async function getSeries(
  */
 export async function getSeriesById(id: number): Promise<any> {
   console.log("start API => getSeriesById")
-  const endpoint = `/series/${id}`
+  const endpoint = `/series/${id}/extended`
   return await tvDBCall(endpoint, {}, "GET")
 }
 

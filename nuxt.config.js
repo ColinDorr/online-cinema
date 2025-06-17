@@ -1,4 +1,5 @@
 import tailwindcss from "@tailwindcss/vite";
+import svgLoader from 'vite-svg-loader'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -8,9 +9,10 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       tailwindcss(),
+      svgLoader(),
     ],
   },
-  modules: ['@pinia/nuxt'],
+  modules: ['@pinia/nuxt', '@nuxt/test-utils/module'],
   runtimeConfig: {
     public: {
       API_URL: process.env.API_URL,

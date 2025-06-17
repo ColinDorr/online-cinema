@@ -1,21 +1,26 @@
 <template>
-    <img v-if="compiledPath" :src="compiledPath" :alt="alt" lazy>
+  <template v-if="compiledPath">
+    <img :src="compiledPath" :alt="alt" loading="lazy" />
+  </template>
+  <template v-else-if="placeholder">
+    <component :is="placeholder" fill="currentColor" class="w-full h-full" />
+  </template>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 
 const props = defineProps<{
-  fullPath?: string
-  path?: string
+  path: string,
   alt: string
+  placeholder?: any, // SVG component or undefined
 }>()
 
 const compiledPath = computed(() => {
-  if (props.fullPath) {
-    return props.fullPath
-  } else if (props.path) {
-    return `https://artworks.thetvdb.com${props.path}`
+  if (props.path) {
+    return props.path.startsWith('https://') || props.path.startsWith('http://')
+      ? props.path
+      : `https://artworks.thetvdb.com${props.path}`
   }
   return null
 })

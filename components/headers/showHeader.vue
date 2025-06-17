@@ -2,10 +2,10 @@
     <div class="container m-auto relative">
         <div class="text-white">
             <div class="md:grid md:place-items-center">
-                <imageElement class="md:w-[74rem] md:rounded-b-md" :fullPath="artworks?.[0]?.image || image" :alt="name" />
+                <imageElement class="md:w-[74rem] md:rounded-b-md" :path="artworks?.[0]?.image || image" :alt="name" />
             </div>
             
-            <imageElement class="-mt-32 ml-4 w-36 rounded-xl md:-mt-[16rem] md:ml-32 md:w-72"  :fullPath="image" :alt="name" />
+            <imageElement class="-mt-32 ml-4 w-36 rounded-xl md:-mt-[16rem] md:ml-32 md:w-72"  :path="image" :alt="name" />
             
             <button id="/movie/1087891" class="block absolute right-5 top-[17.2rem] ml-12 mt-6 flex items-center rounded-lg  bg-white px-12 py-[.32rem] font-light text-black md:right-20 md:top-[45rem] md:font-semibold">
                 <span class="mr-1 text-xl">+</span> My List 
