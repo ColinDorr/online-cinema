@@ -66,6 +66,7 @@ const settings = computed(() => {
     focus: 0,
     gap: "24px",
     paginationKeyboard: true,
+    keyboard: true,
     mediaQuery: "min",
     breakpoints: {
       350: { fixedWidth: "250px" },
